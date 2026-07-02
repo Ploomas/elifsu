@@ -1,5 +1,6 @@
 const noButton = document.querySelector("#noButton");
 const yesButton = document.querySelector("#yesButton");
+const yesSound = document.querySelector("#yesSound");
 const question = document.querySelector("#question");
 const note = document.querySelector("#note");
 
@@ -20,6 +21,29 @@ const notes = [
 ];
 
 let noClicks = 0;
+let isOpeningCelebration = false;
+
+const openCelebration = () => {
+  if (isOpeningCelebration) {
+    return;
+  }
+
+  isOpeningCelebration = true;
+  window.location.href = yesButton.href;
+};
+
+yesButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  yesSound.currentTime = 0;
+  const sound = yesSound.play();
+
+  window.setTimeout(openCelebration, 950);
+
+  if (sound) {
+    sound.catch(openCelebration);
+  }
+});
 
 noButton.addEventListener("click", () => {
   noClicks += 1;
