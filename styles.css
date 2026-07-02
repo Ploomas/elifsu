@@ -231,12 +231,44 @@ h1 {
   position: relative;
   z-index: 1;
   display: block;
-  width: min(100%, 20rem);
+  width: min(105%, 21rem);
   max-height: 18rem;
   object-fit: contain;
-  border-radius: 8px;
   filter: drop-shadow(0 1.2rem 1.5rem rgba(189, 31, 100, 0.2));
   animation: ring-bounce 1.35s ease-in-out infinite;
+}
+
+.floating-heart {
+  position: absolute;
+  z-index: 0;
+  color: #e31338;
+  font-size: clamp(1.8rem, 8vw, 3.4rem);
+  line-height: 1;
+  text-shadow: 0 0.35rem 0.8rem rgba(189, 31, 100, 0.22);
+  animation: heart-float 3.8s ease-in-out infinite;
+}
+
+.heart-one {
+  left: -5%;
+  top: 8%;
+}
+
+.heart-two {
+  right: -7%;
+  top: 19%;
+  animation-delay: -1.2s;
+}
+
+.heart-three {
+  left: 3%;
+  bottom: 9%;
+  animation-delay: -2.1s;
+}
+
+.heart-four {
+  right: 5%;
+  bottom: 0;
+  animation-delay: -0.7s;
 }
 
 .shine {
@@ -320,6 +352,19 @@ h1 {
 
   50% {
     transform: scale(1.05) rotate(18deg);
+  }
+}
+
+@keyframes heart-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(0.92) rotate(-7deg);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: translateY(-1rem) scale(1.1) rotate(7deg);
+    opacity: 1;
   }
 }
 

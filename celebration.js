@@ -78,9 +78,12 @@ function playTone(frequency, start, duration, type = "sawtooth", volume = 0.12, 
 
 function playPartySound() {
   audioContext = audioContext || new AudioContext();
-  playTone(220, 0, 0.42, "sawtooth", 0.18, 146.83);
-  playTone(185, 0.36, 0.5, "sawtooth", 0.16, 123.47);
-  playTone(164.81, 0.78, 0.58, "square", 0.13, 98);
+  playTone(523.25, 0, 0.16, "square", 0.14, 659.25);
+  playTone(659.25, 0.15, 0.16, "sawtooth", 0.14, 783.99);
+  playTone(783.99, 0.3, 0.18, "square", 0.15, 1046.5);
+  playTone(1046.5, 0.48, 0.22, "sawtooth", 0.13, 987.77);
+  playTone(392, 0.02, 0.45, "sawtooth", 0.045, 392);
+  playTone(523.25, 0.52, 0.38, "square", 0.05, 523.25);
 }
 
 function startParty() {
