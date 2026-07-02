@@ -53,17 +53,24 @@ function drawConfetti() {
   requestAnimationFrame(drawConfetti);
 }
 
-function playTone(frequency, start, duration, type = "triangle", volume = 0.12) {
+function playTone(frequency, start, duration, type = "sawtooth", volume = 0.12, endFrequency = frequency) {
   const oscillator = audioContext.createOscillator();
+  const filter = audioContext.createBiquadFilter();
   const gain = audioContext.createGain();
 
   oscillator.type = type;
   oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime + start);
+  oscillator.frequency.exponentialRampToValueAtTime(endFrequency, audioContext.currentTime + start + duration);
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(760, audioContext.currentTime + start);
+  filter.frequency.linearRampToValueAtTime(420, audioContext.currentTime + start + duration);
+  filter.Q.setValueAtTime(8, audioContext.currentTime + start);
   gain.gain.setValueAtTime(0.0001, audioContext.currentTime + start);
-  gain.gain.exponentialRampToValueAtTime(volume, audioContext.currentTime + start + 0.025);
+  gain.gain.exponentialRampToValueAtTime(volume, audioContext.currentTime + start + 0.04);
   gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + start + duration);
 
-  oscillator.connect(gain);
+  oscillator.connect(filter);
+  filter.connect(gain);
   gain.connect(audioContext.destination);
   oscillator.start(audioContext.currentTime + start);
   oscillator.stop(audioContext.currentTime + start + duration + 0.03);
@@ -71,14 +78,9 @@ function playTone(frequency, start, duration, type = "triangle", volume = 0.12) 
 
 function playPartySound() {
   audioContext = audioContext || new AudioContext();
-  const melody = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
-
-  melody.forEach((frequency, index) => {
-    playTone(frequency, index * 0.11, 0.16);
-  });
-
-  playTone(196, 0, 0.55, "sawtooth", 0.05);
-  playTone(261.63, 0.36, 0.42, "square", 0.045);
+  playTone(220, 0, 0.42, "sawtooth", 0.18, 146.83);
+  playTone(185, 0.36, 0.5, "sawtooth", 0.16, 123.47);
+  playTone(164.81, 0.78, 0.58, "square", 0.13, 98);
 }
 
 function startParty() {

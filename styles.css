@@ -227,38 +227,16 @@ h1 {
   place-items: center;
 }
 
-.party-ring {
+.party-image {
   position: relative;
-  width: 72%;
-  aspect-ratio: 1;
+  z-index: 1;
+  display: block;
+  width: min(100%, 20rem);
+  max-height: 18rem;
+  object-fit: contain;
+  border-radius: 8px;
+  filter: drop-shadow(0 1.2rem 1.5rem rgba(189, 31, 100, 0.2));
   animation: ring-bounce 1.35s ease-in-out infinite;
-}
-
-.band {
-  position: absolute;
-  inset: 34% 12% 10%;
-  border: clamp(0.9rem, 4vw, 1.25rem) solid #f7b733;
-  border-top-color: #ffd96f;
-  border-radius: 50%;
-  box-shadow:
-    inset 0 -0.5rem 0 rgba(174, 105, 0, 0.18),
-    0 1rem 2rem rgba(189, 31, 100, 0.18);
-}
-
-.diamond {
-  position: absolute;
-  top: 4%;
-  left: 50%;
-  width: 44%;
-  aspect-ratio: 1.05;
-  border: clamp(0.35rem, 1.5vw, 0.52rem) solid #8be8ff;
-  border-radius: 26% 26% 8% 8%;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(152, 238, 255, 0.82) 48%, #56c8ff);
-  box-shadow:
-    inset 0.45rem 0.45rem 0 rgba(255, 255, 255, 0.62),
-    0 0 1.4rem rgba(255, 255, 255, 0.96);
-  transform: translateX(-50%) rotate(45deg);
 }
 
 .shine {
