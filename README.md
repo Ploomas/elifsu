@@ -9,7 +9,7 @@ A small static website for asking:
 - Pink proposal page with Yes and No buttons.
 - The No button works on mobile taps: it shrinks while the Yes button grows.
 - After enough No taps, No disappears.
-- The Yes button opens `yes.html`, which is only a placeholder for now.
+- The Yes button opens `yes.html`, a celebration page with a cartoon party ring, confetti, and tap-to-start party sounds.
 
 ## GitHub Pages
 
@@ -21,4 +21,4 @@ This can be hosted with GitHub Pages as a plain static site.
 4. Choose the default branch and root folder.
 5. Save, then open the Pages URL GitHub gives you.
 
-The celebration page can be built later in `yes.html`.
+The celebration page lives in `yes.html` and `celebration.js`.
