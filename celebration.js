@@ -54,10 +54,8 @@ function drawConfetti() {
 }
 
 function playPartySound() {
-  soundPlayer.src = "";
-  window.setTimeout(() => {
-    soundPlayer.src = "https://www.youtube.com/embed/Xp2ROiFUZ6w?autoplay=1&playsinline=1&rel=0";
-  }, 20);
+  soundPlayer.currentTime = 0;
+  soundPlayer.play();
 }
 
 function startParty() {
