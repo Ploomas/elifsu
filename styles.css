@@ -191,6 +191,13 @@ h1 {
   pointer-events: none;
 }
 
+.sound-player {
+  width: 0;
+  height: 0;
+  border: 0;
+  opacity: 0;
+}
+
 .celebration-screen {
   position: relative;
   display: grid;

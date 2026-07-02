@@ -1,10 +1,10 @@
 const canvas = document.querySelector("#confettiCanvas");
 const partyButton = document.querySelector("#partyButton");
+const soundPlayer = document.querySelector("#soundPlayer");
 const context = canvas.getContext("2d");
 const colors = ["#ff4f9a", "#ffd96f", "#34b3ff", "#9bffb0", "#ffffff"];
 
 let confetti = [];
-let audioContext;
 
 function resizeCanvas() {
   const pixelRatio = window.devicePixelRatio || 1;
@@ -53,37 +53,11 @@ function drawConfetti() {
   requestAnimationFrame(drawConfetti);
 }
 
-function playTone(frequency, start, duration, type = "sawtooth", volume = 0.12, endFrequency = frequency) {
-  const oscillator = audioContext.createOscillator();
-  const filter = audioContext.createBiquadFilter();
-  const gain = audioContext.createGain();
-
-  oscillator.type = type;
-  oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime + start);
-  oscillator.frequency.exponentialRampToValueAtTime(endFrequency, audioContext.currentTime + start + duration);
-  filter.type = "lowpass";
-  filter.frequency.setValueAtTime(760, audioContext.currentTime + start);
-  filter.frequency.linearRampToValueAtTime(420, audioContext.currentTime + start + duration);
-  filter.Q.setValueAtTime(8, audioContext.currentTime + start);
-  gain.gain.setValueAtTime(0.0001, audioContext.currentTime + start);
-  gain.gain.exponentialRampToValueAtTime(volume, audioContext.currentTime + start + 0.04);
-  gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + start + duration);
-
-  oscillator.connect(filter);
-  filter.connect(gain);
-  gain.connect(audioContext.destination);
-  oscillator.start(audioContext.currentTime + start);
-  oscillator.stop(audioContext.currentTime + start + duration + 0.03);
-}
-
 function playPartySound() {
-  audioContext = audioContext || new AudioContext();
-  playTone(523.25, 0, 0.16, "square", 0.14, 659.25);
-  playTone(659.25, 0.15, 0.16, "sawtooth", 0.14, 783.99);
-  playTone(783.99, 0.3, 0.18, "square", 0.15, 1046.5);
-  playTone(1046.5, 0.48, 0.22, "sawtooth", 0.13, 987.77);
-  playTone(392, 0.02, 0.45, "sawtooth", 0.045, 392);
-  playTone(523.25, 0.52, 0.38, "square", 0.05, 523.25);
+  soundPlayer.src = "";
+  window.setTimeout(() => {
+    soundPlayer.src = "https://www.youtube.com/embed/Xp2ROiFUZ6w?autoplay=1&playsinline=1&rel=0";
+  }, 20);
 }
 
 function startParty() {
