@@ -6,16 +6,32 @@
     <title>Yes</title>
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
-    <main class="proposal-screen">
-      <section class="proposal">
-        <p class="eyebrow">Coming next</p>
-        <h1>Celebration page soon</h1>
-        <p class="note">We will make this part amazing at the end.</p>
+  <body class="celebration-page">
+    <canvas class="confetti-canvas" id="confettiCanvas" aria-hidden="true"></canvas>
+    <main class="celebration-screen">
+      <section class="celebration">
+        <p class="eyebrow">She said yes</p>
+        <h1>YAYYY SHE SAID YES!</h1>
+
+        <div class="ring-stage" aria-label="Cartoon party ring">
+          <span class="burst burst-one" aria-hidden="true"></span>
+          <span class="burst burst-two" aria-hidden="true"></span>
+          <div class="party-ring" aria-hidden="true">
+            <span class="diamond"></span>
+            <span class="band"></span>
+            <span class="shine shine-one"></span>
+            <span class="shine shine-two"></span>
+            <span class="shine shine-three"></span>
+          </div>
+        </div>
+
+        <p class="note">I'm so happy it's you, Elifsu.</p>
         <div class="buttons">
-          <a class="button yes-button" href="index.html">Back</a>
+          <button class="button yes-button" id="partyButton" type="button">Start party</button>
+          <a class="button quiet-button" href="index.html">Back</a>
         </div>
       </section>
     </main>
+    <script src="celebration.js"></script>
   </body>
 </html>
