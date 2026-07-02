@@ -1,5 +1,6 @@
 const noButton = document.querySelector("#noButton");
 const yesButton = document.querySelector("#yesButton");
+const yesSound = document.querySelector("#yesSound");
 const question = document.querySelector("#question");
 const note = document.querySelector("#note");
 
@@ -20,6 +21,44 @@ const notes = [
 ];
 
 let noClicks = 0;
+let isPlayingYesSound = false;
+let hasOpenedCelebration = false;
+
+const openCelebration = () => {
+  if (hasOpenedCelebration) {
+    return;
+  }
+
+  hasOpenedCelebration = true;
+  window.location.href = yesButton.href;
+};
+
+yesButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  if (isPlayingYesSound) {
+    return;
+  }
+
+  isPlayingYesSound = true;
+  yesButton.textContent = "Opening...";
+  note.textContent = "Listen first, then the celebration opens.";
+  noButton.disabled = true;
+
+  const sound = new Audio(yesSound.currentSrc || yesSound.src);
+  sound.volume = 1;
+  sound.currentTime = 0;
+
+  sound.addEventListener("ended", openCelebration, { once: true });
+  window.setTimeout(openCelebration, 2600);
+
+  sound.play().catch(() => {
+    note.textContent = "Tap Yes one more time so the sound can start.";
+    yesButton.textContent = "Yes";
+    noButton.disabled = false;
+    isPlayingYesSound = false;
+  });
+});
 
 noButton.addEventListener("click", () => {
   noClicks += 1;
